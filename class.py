@@ -1,7 +1,7 @@
 import math
 
 
-class Human:
+class Human(object):
     def __init__(self, name=None, age=None, weight=None, height=None):  # parameter
         self.name = name  # property
         self.age = age  # property
@@ -30,3 +30,16 @@ p = Human()
 p.name = "parvane"
 p.age = 34
 print(p)
+
+
+class Man(Human):
+    def __init__(self, *args, **kwargs):
+        super(Man, self).__init__(*args, **kwargs)
+        self.gender = "male"
+
+    def __str__(self):
+        return "{} is {}".format(self.name,self.gender)
+
+
+m = Man(name="maza", age=32)
+print(m)
