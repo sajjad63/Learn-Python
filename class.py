@@ -18,7 +18,7 @@ class Human(object):
         return "{name} is {age}".format(name=self.name, age=self.age)
 
 
-# y = Human(name="sajjad")
+y = Human(name="sajjad")
 # y.age = 37
 # print(y)
 # print(y.age)
@@ -45,17 +45,27 @@ m = Man(name="maza", age=32)
 print(m)
 
 
-class Woman(Human):
+class Woman(Man):
     def __init__(self, *args, **kwargs):
-        super(Woman, self).__init__(*args, **kwargs)
+        # super(Woman, self).__init__(*args, **kwargs)
+        # Human.__init__(*args, **kwargs)
+        self.double_bmi = None
+        print(kwargs)
+        self.hair_color = kwargs.pop("hair_color")
+        print(kwargs)
+        super().__init__(*args, **kwargs)
         self.gender = "female"
+        # self.hair_color = kwargs["hair_color"]
+        print(kwargs)
 
-    def calc_doublebmi(self):
-        self.doublebmi = 2 * self.weight / math.pow(self.height, 2)
+
+    def calc_double_bmi(self):
+        self.double_bmi = 2 * self.weight / math.pow(self.height, 2)
+        return self.double_bmi
 
     def __str__(self):
-        return "{}Double BMI is: {}".format(self.name, self.doublebmi)
+        return "{}Double BMI is: {}".format(self.name, self.double_bmi)
 
 
-f = Woman(name="safur", age=32, weight=45, height=1.630)
-print(f)
+f = Woman(name="safur", age=32, weight=45, height=1.630, hair_color="blonde")
+print(f.calc_double_bmi())
