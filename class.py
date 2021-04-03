@@ -38,8 +38,24 @@ class Man(Human):
         self.gender = "male"
 
     def __str__(self):
-        return "{} is {}".format(self.name,self.gender)
+        return "{} is {}".format(self.name, self.gender)
 
 
 m = Man(name="maza", age=32)
 print(m)
+
+
+class Woman(Human):
+    def __init__(self, *args, **kwargs):
+        super(Woman, self).__init__(*args, **kwargs)
+        self.gender = "female"
+
+    def calc_doublebmi(self):
+        self.doublebmi = 2 * self.weight / math.pow(self.height, 2)
+
+    def __str__(self):
+        return "{}Double BMI is: {}".format(self.name, self.doublebmi)
+
+
+f = Woman(name="safur", age=32, weight=45, height=1.630)
+print(f)
